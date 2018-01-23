@@ -1576,7 +1576,7 @@ Class Mongo_db
 	 *  @param    boolean  $enable_end_wildcard    [Should be used closing symbol $]
 	 *  @return   $this
 	 */
-	public function like(string $field = '', string $regex = '', string $flags = 'i', bool $enable_start_wildcard = TRUE, bool $enable_end_wildcard = TRUE): self
+	public function like(string $field = '', string $regex = '', string $flags = 'i', bool $enable_start_wildcard = FALSE, bool $enable_end_wildcard = FALSE): self
 	{
 		if ($field != '')
 		{
