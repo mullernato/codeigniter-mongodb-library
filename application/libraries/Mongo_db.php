@@ -1558,7 +1558,7 @@ Class Mongo_db
 			$regex .= '$';
 		}
 
-		return Regex($regex, (string) $flags);
+		return new Regex($regex, (string) $flags);
 	}
 
 	/**
