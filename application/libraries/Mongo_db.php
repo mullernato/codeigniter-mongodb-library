@@ -2696,6 +2696,32 @@ Class Mongo_db
 		return $this->_get($collection, $options, FALSE, __METHOD__);
 	}
 
+	// EXPERIMENTAL getResult
+	public function getResult(string $collection = '', array $options = []): array
+	{
+		$return = $this->_get($collection, $options, FALSE, __METHOD__);
+		
+		if(count($return) > 0){
+            return (array) $this->_array_to_object($return);
+        }
+		
+	}
+	
+	public function _array_to_object($array)
+        {
+	  $obj = new stdClass;
+	  foreach($array as $k => $v) {
+		 if(strlen($k)) {
+			if(is_array($v)) {
+			   $obj->{$k} = $this->_array_to_object($v); //RECURSION
+			} else {
+			   $obj->{$k} = $v;
+			}
+		 }
+	  }
+	  return $obj;
+	}
+	
 	/**
 	 *  Initializes query with search condition to get one or more documents.
 	 *
